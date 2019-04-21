@@ -1,0 +1,12 @@
+rj = load('actuatorPosition.txt');
+MM = load('MM.txt');
+
+r_capsule = [0.01;0.01;0.15];   % capsule's 
+n_capsule = [0;1;0];
+n_capsule = n_capsule / norm(n_capsule);
+
+b_des = n_capsule * 3e-3; % 3 mT along the desired orientation at the capsule's position
+
+BM = BB_Packing(ri,rj)*MM; % B-field actuation matrix
+
+II = pinv(BM)*b_des  % current desired
